@@ -4,7 +4,9 @@ import com.br.curso.alura.springboot3.springboot3.entity.AddressEntity;
 import com.br.curso.alura.springboot3.springboot3.entity.DoctorEntity;
 import com.br.curso.alura.springboot3.springboot3.model.Address;
 import com.br.curso.alura.springboot3.springboot3.model.Doctor;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DoctorMapper {
 
     public DoctorEntity doctorMapperFromDoctorEntity(Doctor doctor){
