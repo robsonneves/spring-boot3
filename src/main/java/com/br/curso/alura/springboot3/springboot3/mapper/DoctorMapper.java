@@ -14,6 +14,7 @@ public class DoctorMapper {
         return DoctorEntity.builder()
                 .name(doctor.name())
                 .email(doctor.email())
+                .phone(doctor.phone())
                 .crm(doctor.crm())
                 .specialty(doctor.specialty())
                 .address(addressMapperFromAddressEntity(doctor.address()))
