@@ -1,16 +1,13 @@
 package com.br.curso.alura.springboot3.springboot3.entity;
 
+import com.br.curso.alura.springboot3.springboot3.model.Doctor;
 import com.br.curso.alura.springboot3.springboot3.model.Specialty;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Table(name = "doctors")
 @Entity(name = "Doctor")
-@Builder
-@NoArgsConstructor
+@Getter
 @AllArgsConstructor
 @EqualsAndHashCode(of = "id")
 public class DoctorEntity {
@@ -24,5 +21,17 @@ public class DoctorEntity {
     @Enumerated(EnumType.STRING)
     private Specialty specialty;
     @Embedded
-    private AddressEntity address;
+    private AddressEntity addressEntity;
+
+    public DoctorEntity(){}
+
+    public DoctorEntity(Doctor doctor) {
+        this.name = doctor.name();
+        this.email = doctor.email();
+        this.phone = doctor.phone();
+        this.crm = doctor.crm();
+        this.specialty = doctor.specialty();
+        this.addressEntity = new AddressEntity(doctor.address());
+    }
 }
+
