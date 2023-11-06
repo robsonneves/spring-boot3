@@ -1,6 +1,7 @@
 package com.br.curso.alura.springboot3.springboot3.entity;
 
 import com.br.curso.alura.springboot3.springboot3.model.Doctor;
+import com.br.curso.alura.springboot3.springboot3.model.DoctorUpdate;
 import com.br.curso.alura.springboot3.springboot3.model.Specialty;
 import jakarta.persistence.*;
 import lombok.*;
@@ -32,6 +33,13 @@ public class DoctorEntity {
         this.crm = doctor.crm();
         this.specialty = doctor.specialty();
         this.addressEntity = new AddressEntity(doctor.address());
+    }
+
+    public DoctorEntity(DoctorUpdate doctorUpdate) {
+        if(doctorUpdate.name() != null){ this.name = doctorUpdate.name(); }
+        if(doctorUpdate.email() != null){ this.email = doctorUpdate.email(); }
+        if(doctorUpdate.phone() != null){ this.phone = doctorUpdate.phone(); }
+        if(doctorUpdate.crm() != null){ this.crm = doctorUpdate.crm(); }
     }
 }
 
