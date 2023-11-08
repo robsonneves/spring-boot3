@@ -1,6 +1,9 @@
 package com.br.curso.alura.springboot3.springboot3.controller;
 
+import com.br.curso.alura.springboot3.springboot3.entity.User;
+import com.br.curso.alura.springboot3.springboot3.model.dataTokenJwt;
 import com.br.curso.alura.springboot3.springboot3.model.login.AutenticationData;
+import com.br.curso.alura.springboot3.springboot3.service.TokenService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,12 +20,14 @@ import org.springframework.web.bind.annotation.RestController;
 public class AutenticationController {
 
     private final AuthenticationManager manager;
+    private final TokenService tokenService;
 
     @PostMapping
     public ResponseEntity login(@RequestBody @Valid AutenticationData data){
-        var token = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var autentication = manager.authenticate(token);
-        return ResponseEntity.ok().build();
-    }
+        var authenticationToken = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+        var authentication = manager.authenticate(authenticationToken);
+        var tokenJwt = tokenService.createToken((User) authentication.getPrincipal());
 
+        return ResponseEntity.ok(new dataTokenJwt(tokenJwt));
+    }
 }
