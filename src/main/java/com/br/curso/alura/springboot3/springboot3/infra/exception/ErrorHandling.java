@@ -1,4 +1,4 @@
-package com.br.curso.alura.springboot3.springboot3.infra;
+package com.br.curso.alura.springboot3.springboot3.infra.exception;
 
 import com.br.curso.alura.springboot3.springboot3.model.error.ValidationData;
 import jakarta.persistence.EntityNotFoundException;
